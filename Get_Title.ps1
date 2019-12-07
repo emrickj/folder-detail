@@ -12,14 +12,14 @@ write-host "  <script src='https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bo
 write-host "</head>"
 write-host "<body>"
 write-host "<div class='container'>"
-$folder = 'C:\users\misue\downloads\'
+$folder = 'C:\users\misue\music\'
 write-host "<h2><i class='fa fa-folder-open-o'></i> $folder</h2>"
 $shell = New-Object -COMObject Shell.Application
 $shellfolder = $shell.Namespace($folder)
 write-host "<div class='table-responsive'>"
 write-host "<table class='table table-striped'>"
 write-host "  <tr>"
-For ($i=0; $i -lt 22; $i++) {
+For ($i=0; $i -le 266; $i++) {
   $h = $shellfolder.GetDetailsOf("",$i)
   write-host "    <th>$h</th>"
 }
@@ -31,19 +31,22 @@ foreach ($file in $shellfolder.items())
    $type = $shellfolder.GetDetailsOf($file, 2)
    $icon = ""
    switch($type){
-      "File folder"               {$icon = "fa fa-folder-o"}
-	  "MP4 File"                  {$icon = "fa-file-video-o"}
-	  "M4V File"                  {$icon = "fa-file-video-o"}
-	  "JPG File"                  {$icon = "fa-file-image-o"}
-	  "PNG File"                  {$icon = "fa-file-image-o"}
-	  "PDF File"                  {$icon = "fa-file-pdf-o"}
-	  "PHP File"                  {$icon = "fa-file-code-o"}
-	  "Windows Powershell Script" {$icon = "fa-file-code-o"}
-	  "Microsoft Word Document"   {$icon = "fa-file-word-o"}
-	  "File"                      {$icon = "fa-file-o"}
+      "File folder"                {$icon = "fa fa-folder-o"}
+	  "MP4 File"                   {$icon = "fa-file-video-o"}
+	  "M4V File"                   {$icon = "fa-file-video-o"}
+	  "JPG File"                   {$icon = "fa-file-image-o"}
+	  "PNG File"                   {$icon = "fa-file-image-o"}
+	  "PDF File"                   {$icon = "fa-file-pdf-o"}
+	  "PHP File"                   {$icon = "fa-file-code-o"}
+	  "MP3 File"                   {$icon = "fa-file-audio-o"}
+	  "Windows Powershell Script"  {$icon = "fa-file-code-o"}
+	  "Microsoft Word Document"    {$icon = "fa-file-word-o"}
+	  "Compressed (zipped) Folder" {$icon = "fa-file-zip-o"}
+	  "Text Document"              {$icon = "fa-file-text-o"}
+	  "File"                       {$icon = "fa-file-o"}
    }
    write-host "    <td><i class='fa $icon'></i> $name</td>"
-   For ($i=1; $i -lt 22; $i++) {
+   For ($i=1; $i -le 266; $i++) {
      $di = $shellfolder.GetDetailsOf($file, $i)
      write-host "    <td>$di</td>"
    }
